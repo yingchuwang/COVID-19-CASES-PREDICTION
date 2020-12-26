@@ -2,7 +2,7 @@
 ## Table of contents 
 * [Background](#background)
 * [Data Collection](#data-collection)
-* [Data Cleaning](#data-cleaning)
+* [Preprocessing](#preprocessing)
 
 ## Background
 A novel coronavirus is a new coronavirus that has not been previously identified. The virus causing coronavirus disease 2019 (COVID-19), is not the same as the coronaviruses that commonly circulate among humans and cause mild illness, like the common cold [1]. 
@@ -27,22 +27,22 @@ The COVID-19 case data was downloaded from California Open Data Portal (version 
 
 [4] https://data.ca.gov/dataset/covid-19-cases
 
-## Data cleaning
+## Preprocessing
 
-### Pre-cleaning for Statistics data
+### Statistics data
 
 Original data: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv
 
-Pre-cleaning steps:
+Steps:
 1. Rotate the table. Make rows the county names and columns the census data.
 2. Clean the columns title so that they can be accepted by MySQL.
 3. Delete the percentage mark '%' in the data.
 
-### Pre-cleaning for Case data
+### Case data
 
 Original data: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv
 
-Pre-cleaning steps:
+Steps:
 1. Obtain the data only on 12/17/2020 using MySQL system.
 2. Only keep the column 'totalcountconfirmed'.
 
