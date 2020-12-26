@@ -11,3 +11,18 @@ References:
 [1] https://www.cdc.gov/coronavirus/2019-nCoV/index.html
 
 [2] https://www.sfgate.com/bayarea/article/California-COVID-lockdown-cases-deaths-businesses-15819841.php
+
+## Data Collection
+
+The statistics for all counties of California were downloaded from Census Bureau (version 7/1/2019) [3].
+
+The COVID-19 case data was downloaded from California Open Data Portal (version 12/17/2020) [4].
+
+[3] https://www.census.gov/quickfacts/fact/table/US/PST045219
+
+[4] https://data.ca.gov/dataset/covid-19-cases
+
+## Data cleaning
+
+### Statistics data
+
