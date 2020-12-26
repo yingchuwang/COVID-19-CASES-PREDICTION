@@ -49,4 +49,4 @@ Steps:
 
 ### Combine data and export
 
-Combine the statistics data and cases data. Export it as a csv file.
+After preprocessing, I combined the statistics data and cases data and exported it as a csv file: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv
