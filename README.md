@@ -1,4 +1,9 @@
 # COVID-19-CASES-PREDICTION
+## Table of contents 
+* [Background](#background)
+* [Data Collection](#data-collection)
+* [Data Cleaning](#data-cleaning)
+
 ## Background
 A novel coronavirus is a new coronavirus that has not been previously identified. The virus causing coronavirus disease 2019 (COVID-19), is not the same as the coronaviruses that commonly circulate among humans and cause mild illness, like the common cold [1]. 
 
@@ -25,4 +30,6 @@ The COVID-19 case data was downloaded from California Open Data Portal (version 
 ## Data cleaning
 
 ### Statistics data
+
+* [General info](#general-info)
 
