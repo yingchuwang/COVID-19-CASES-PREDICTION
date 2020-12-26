@@ -35,8 +35,9 @@ Original data: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/mai
 
 Steps:
 1. Rotate the table. Make rows the county names and columns the census data.
-2. Clean the columns title so that they can be accepted by MySQL.
-3. Delete the percentage mark '%' in the data.
+2. Delete the 'County, California' in the county name.
+3. Clean the columns title so that they can be accepted by MySQL.
+4. Change the percentage format and currency format to number format.
 
 ### Case data
 
