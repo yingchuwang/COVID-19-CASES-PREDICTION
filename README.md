@@ -29,7 +29,23 @@ The COVID-19 case data was downloaded from California Open Data Portal (version 
 
 ## Data cleaning
 
-### Statistics data
+### Pre-cleaning for Statistics data
 
-* [General info](#general-info)
+Original data: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv
 
+Pre-cleaning steps:
+1. Rotate the table. Make rows the county names and columns the census data.
+2. Clean the columns title so that they can be accepted by MySQL.
+3. Delete the percentage mark '%' in the data.
+
+### Pre-cleaning for Case data
+
+Original data: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv
+
+Pre-cleaning steps:
+1. Obtain the data only on 12/17/2020 using MySQL system.
+2. Only keep the column 'totalcountconfirmed'.
+
+### Combine data and export
+
+Combine the statistics data and cases data. Export it as a csv file.
