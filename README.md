@@ -37,7 +37,9 @@ Steps:
 1. Rotate the table. Make rows the county names and columns the census data.
 2. Delete the 'County, California' in the county name.
 3. Clean the columns title so that they can be accepted by MySQL.
-4. Change the percentage format and currency format to number format.
+4. Deal with the cell format and change all format to 'number' format.
+5. Delete the 'FIPS CODE' column.
+6. Delete the cell value with 'D','F','C'.
 
 ### Case data
 
