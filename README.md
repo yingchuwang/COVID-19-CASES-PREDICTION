@@ -199,21 +199,12 @@ Owner occupied housing unit rate	                           |-0.359313
 White alone, not Hispanic or Latino	                        |-0.371180
 
 6. According to the correlation matrix and correlation coefficient, features have high correlation with others or have low correlation with the target are removed. The following shows the highly corelatived features. The strong text features are the ones that kept.
-   1. __'Population 2019'__, 'Population 2010', 'Population Census 2010', 'Veterans', 'Housing units', 'Building permits', 'Households', 'Total accommodations and food services sales', 'Total health care and social assistance receipts or revenue', 'Total manufacturers shipments', 'Total merchant wholesaler sales', 'Total retail sales', 'Total employer establishments', 'Total employment', 'Total annual payroll', 'Total nonemployer establishments', 'All firms', 'Men owned firms', 'Women owned firms', 'Minority owned firms', 'Nonminority owned firms', 'Veteran owned firms', 'Nonveteran owned firms'
-      * Although 'Population 2019' doesn't have the highest correlation coefficient in these high correlated features, I still keep it because it is more meaning ful comparing to the other features. 
+   1. __'Population 2019'__, 'Population 2010', 'Population Census 2010', 'Veterans', 'Housing units', 'Building permits', 'Households', 'Total accommodations and food services sales', 'Total health care and social assistance receipts or revenue', 'Total manufacturers shipments', 'Total merchant wholesaler sales', 'Total retail sales', 'Total employer establishments', 'Total employment', 'Total annual payroll', 'Total nonemployer establishments', 'All firms', 'Men owned firms', 'Women owned firms', 'Minority owned firms', 'Nonminority owned firms', 'Veteran owned firms', 'Nonveteran owned firms' 
    2. __'Under 5 years'__, 'Under 18 years'
-      * 'Under 5 years' has higher correlation coefficient.
-   3. 'Median household income in 2019 dollars', 'Median value of owner occupied housing units','Median selected monthly owner costs with a mortgage', 'Median selected monthly owner costs without a mortgage', __'Median gross rent'__,'Households with a broadband internet subscription','Bachelor degree or higher', 'Per capita income in past 12 months in 2019 dollars'
-      * 'Median gross rent' has the highest correlation coefficient. 
+   3. 'Median household income in 2019 dollars', 'Median value of owner occupied housing units','Median selected monthly owner costs with a mortgage', 'Median selected monthly owner costs without a mortgage', __'Median gross rent'__,'Households with a broadband internet subscription','Bachelor degree or higher', 'Per capita income in past 12 months in 2019 dollars' 
    4. __'Households with a computer, percent'__, 'Households with a broadband internet subscription'
-      * 'Households with a computer, percent' has higher correlation coefficient.
    5. 'Language other than English spoken at home', __'Foreign born persons'__
-      * 'Foreign born persons' has higher correlation coefficient.
    6. __'In civilian labor force, total'__, 'In civilian labor force, female'
-      * 'In civilian labor force, total' has higher correlation coefficient.
    7. 'Under 18 years', __'Hispanic or Latino'__
-      * 'Hispanic or Latino' has higher correlation coefficient. 
    8. __'65 years and over'__, 'While alone, not Hispanic or Latino'
-      * '65 years and over' has higher correlation coefficient.
    9. 'Persons per household',__'Hispanic or Latino'__
-      * They are have similar correlation coefficient. Since I have keep 'Hispanic or Latino' so 'Persons per household' will be removed.
