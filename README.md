@@ -3,6 +3,7 @@
 * [Background](#background)
 * [Data Collection](#data-collection)
 * [Preprocessing](#preprocessing)
+* [Data Processing](#data-processing)
 
 ## Background
 A novel coronavirus is a new coronavirus that has not been previously identified. The virus causing coronavirus disease 2019 (COVID-19), is not the same as the coronaviruses that commonly circulate among humans and cause mild illness, like the common cold [1]. 
@@ -202,9 +203,70 @@ White alone, not Hispanic or Latino	                        |-0.371180
    1. __'Population 2019'__, 'Population 2010', 'Population Census 2010', 'Veterans', 'Housing units', 'Building permits', 'Households', 'Total accommodations and food services sales', 'Total health care and social assistance receipts or revenue', 'Total manufacturers shipments', 'Total merchant wholesaler sales', 'Total retail sales', 'Total employer establishments', 'Total employment', 'Total annual payroll', 'Total nonemployer establishments', 'All firms', 'Men owned firms', 'Women owned firms', 'Minority owned firms', 'Nonminority owned firms', 'Veteran owned firms', 'Nonveteran owned firms' 
    2. __'Under 5 years'__, 'Under 18 years'
    3. 'Median household income in 2019 dollars', 'Median value of owner occupied housing units','Median selected monthly owner costs with a mortgage', 'Median selected monthly owner costs without a mortgage', __'Median gross rent'__,'Households with a broadband internet subscription','Bachelor degree or higher', 'Per capita income in past 12 months in 2019 dollars' 
-   4. __'Households with a computer, percent'__, 'Households with a broadband internet subscription'
+   4. __'Households with a computer, percent'__, 'Households with a broadband Internet subscription'
    5. 'Language other than English spoken at home', __'Foreign born persons'__
    6. __'In civilian labor force, total'__, 'In civilian labor force, female'
    7. 'Under 18 years', __'Hispanic or Latino'__
-   8. __'65 years and over'__, 'While alone, not Hispanic or Latino'
+   8. __'65 years and over'__, 'White alone, not Hispanic or Latino'
    9. 'Persons per household',__'Hispanic or Latino'__
+   
+## Data Processing
+
+1. Remove redundant features
+
+Per the analysis above, the redundant features are removed. The column 'County' is also removed because the name will not affect the result.
+
+2. fill missing values
+
+Viarables                                                   |Missing value
+------------------------------------------------------------|--------------
+Total merchant wholesaler sales	                           |19
+Total manufacturers shipments	                              |16
+Total accommodation and food services sales	               |3
+Total health care and social assistance receipts or revenue |3
+Veteran owned firms	                                       |2
+Minority owned firms                                   	   |2
+Total employment, percent change	                           |1
+Native Hawaiian and Other Pacific Islander alone	         |1
+Men owned firms	                                          |1
+
+There are only two of these viarables are kept in the dataset. They are 'Total employment, percent change' and 'Native Hawaiian and Other Pacific Islander alone'. There is only one missing value in each viarable. I replace the missing value with the mean of the feature distribution.
+
+3. After removing redundant features and filling with missing data, the total number of columns has reduced to 27. The information below shows that no missing value in the dataset.
+
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 58 entries, 0 to 57
+Data columns (total 27 columns):
+ #   Column                                                Non-Null Count  Dtype  
+---  ------                                                --------------  -----  
+ 0   Population 2019                                       58 non-null     int64  
+ 1   Population percent change                             58 non-null     float64
+ 2   Under 5 years                                         58 non-null     float64
+ 3   65 years and over                                     58 non-null     float64
+ 4   Female persons                                        58 non-null     float64
+ 5   White alone                                           58 non-null     float64
+ 6   Black or African American alone                       58 non-null     float64
+ 7   American Indian and Alaska Native alone               58 non-null     float64
+ 8   Asian alone                                           58 non-null     float64
+ 9   Native Hawaiian and Other Pacific Islander alone      58 non-null     float64
+ 10  Two or More Races                                     58 non-null     float64
+ 11  Hispanic or Latino                                    58 non-null     float64
+ 12  Foreign born persons                                  58 non-null     float64
+ 13  Owner occupied housing unit rate                      58 non-null     float64
+ 14  Median gross rent                                     58 non-null     int64  
+ 15  Living in same house 1 year ago                       58 non-null     float64
+ 16  Households with a computer, percent                   58 non-null     float64
+ 17  High school graduate or higher                        58 non-null     float64
+ 18  With a disability, under age 65 years                 58 non-null     float64
+ 19  Persons without health insurance, under age 65 years  58 non-null     float64
+ 20  In civilian labor force, total                        58 non-null     float64
+ 21  Total retail sales per capita                         58 non-null     int64  
+ 22  Mean travel time to work minutes                      58 non-null     float64
+ 23  Persons in poverty                                    58 non-null     float64
+ 24  Total employment, percent change                      58 non-null     float64
+ 25  Population per square mile                            58 non-null     float64
+ 26  Land area in square miles                             58 non-null     float64
+dtypes: float64(24), int64(3)
+memory usage: 12.4 KB
+```
