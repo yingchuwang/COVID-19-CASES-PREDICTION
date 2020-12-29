@@ -52,3 +52,55 @@ Steps:
 ### Combine data and export
 
 After preprocessing, I combined the statistics data and cases data and exported it as a csv file: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv
+
+## Understanding data
+
+1. Import the data into Jupyter notebook.
+
+2. Seperate the data set into X_pre and y_pre, where X_pre is the statitics data and y_pre is the total confirmed cases number.
+
+```
+X_pre:  (58, 62)
+y_pre:  (58,)
+```
+3. There are total 62 statitics items in the X_pre dataset. Except 'County', all the other columns are numerical. 
+```
+Index(['County', 'Population 2019', 'Population 2010',
+       'Population percent change', 'Population Census 2010', 'Under 5 years',
+       'Under 18 years', '65 years and over', 'Female persons', 'White alone',
+       'Black or African American alone',
+       'American Indian and Alaska Native alone', 'Asian alone',
+       'Native Hawaiian and Other Pacific Islander alone', 'Two or More Races',
+       'Hispanic or Latino', 'White alone, not Hispanic or Latino', 'Veterans',
+       'Foreign born persons', 'Housing units',
+       'Owner occupied housing unit rate',
+       'Median value of owner occupied housing units',
+       'Median selected monthly owner costs with a mortgage',
+       'Median selected monthly owner costs without a mortgage',
+       'Median gross rent', 'Building permits', 'Households',
+       'Persons per household', 'Living in same house 1 year ago',
+       'Language other than English spoken at home',
+       'Households with a computer, percent',
+       'Households with a broadband Internet subscription',
+       'High school graduate or higher', 'Bachelor degree or higher',
+       'With a disability, under age 65 years',
+       'Persons without health insurance, under age 65 years',
+       'In civilian labor force, total', 'In civilian labor force, female',
+       'Total accommodation and food services sales',
+       'Total health care and social assistance receipts or revenue',
+       'Total manufacturers shipments', 'Total merchant wholesaler sales',
+       'Total retail sales', 'Total retail sales per capita',
+       'Mean travel time to work minutes',
+       'Median household income in 2019 dollars',
+       'Per capita income in past 12 months in 2019 dollars',
+       'Persons in poverty', 'Total employer establishments',
+       'Total employment', 'Total annual payroll',
+       'Total employment, percent change', 'Total nonemployer establishments',
+       'All firms', 'Men owned firms', 'Women owned firms',
+       'Minority owned firms', 'Nonminority owned firms',
+       'Veteran owned firms', 'Nonveteran owned firms',
+       'Population per square mile', 'Land area in square miles'],
+      dtype='object')
+```
+4. Correlation matrix is an effective tool to uncover linear relationship (Correlation) between two numerical features and the importance of a feature to the total confirmed cases number. 
+![Algorithm schema](/Users/yingchu99/Documents/project/ml/download.png)
