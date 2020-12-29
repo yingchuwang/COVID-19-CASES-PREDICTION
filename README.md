@@ -29,9 +29,8 @@ The COVID-19 case data was downloaded from California Open Data Portal (version 
 
 ## Preprocessing
 
-1. Statistics data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv)
+Statistics data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv)
 
-Steps:
 1. Rotate the table. Make rows the county names and columns the census data.
 2. Delete the 'County, California' in the county name.
 3. Clean the columns title so that they can be accepted by MySQL.
@@ -39,15 +38,14 @@ Steps:
 5. Delete the 'FIPS CODE' column.
 6. Delete the cell value with 'D','F','C'.
 
-2. Case data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv)
+Case data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv)
 
-Steps:
 1. Obtain the data only on 12/17/2020 using MySQL system.
 2. Only keep the column 'totalcountconfirmed'.
 
-3. Combine data and export - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv)
+Combine data and export - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv)
 
-After preprocessing, I combined the statistics data and cases data and exported it as a csv file.
+1. After preprocessing, combined the statistics data and cases data and exported it as a csv file.
 
 ## Understanding data
 
