@@ -49,52 +49,85 @@ Combine data and export - [Data link](https://github.com/yingchuwang/COVID-19-CA
 
 ## Understanding data
 
-1. Import the data into Jupyter notebook.
+1. Import the dataset 'data_pre' into Jupyter notebook.
 
-2. Seperate the data set into X_pre and y_pre, where X_pre is the statitics data and y_pre is the total confirmed cases number.
+2. Show the shape of the dataset
 
 ```
-X_pre:  (58, 62)
-y_pre:  (58,)
+data_pre:  (58, 63)
 ```
-3. There are total 62 statitics items in the X_pre dataset. Except 'County', all the other columns are numerical. 
+3. Look close to the dataset. All the columns are numerical except 'County'. There are total 63 columns in it. Nine columns have missing values. They are 'Native Hawaiian and Other Pacific Islander alone', 'Total accommodation and food services sales', 'Total health care and social assistance receipts or revenue', 'Total manufacturers shipments', 'Total merchant wholesaler sales', 'Total employment, percent change', 'Men owned firms', 'Minority owned firm', 'Veteran owned firms'. I will deal with these missing values later.
 ```
-Index(['County', 'Population 2019', 'Population 2010',
-       'Population percent change', 'Population Census 2010', 'Under 5 years',
-       'Under 18 years', '65 years and over', 'Female persons', 'White alone',
-       'Black or African American alone',
-       'American Indian and Alaska Native alone', 'Asian alone',
-       'Native Hawaiian and Other Pacific Islander alone', 'Two or More Races',
-       'Hispanic or Latino', 'White alone, not Hispanic or Latino', 'Veterans',
-       'Foreign born persons', 'Housing units',
-       'Owner occupied housing unit rate',
-       'Median value of owner occupied housing units',
-       'Median selected monthly owner costs with a mortgage',
-       'Median selected monthly owner costs without a mortgage',
-       'Median gross rent', 'Building permits', 'Households',
-       'Persons per household', 'Living in same house 1 year ago',
-       'Language other than English spoken at home',
-       'Households with a computer, percent',
-       'Households with a broadband Internet subscription',
-       'High school graduate or higher', 'Bachelor degree or higher',
-       'With a disability, under age 65 years',
-       'Persons without health insurance, under age 65 years',
-       'In civilian labor force, total', 'In civilian labor force, female',
-       'Total accommodation and food services sales',
-       'Total health care and social assistance receipts or revenue',
-       'Total manufacturers shipments', 'Total merchant wholesaler sales',
-       'Total retail sales', 'Total retail sales per capita',
-       'Mean travel time to work minutes',
-       'Median household income in 2019 dollars',
-       'Per capita income in past 12 months in 2019 dollars',
-       'Persons in poverty', 'Total employer establishments',
-       'Total employment', 'Total annual payroll',
-       'Total employment, percent change', 'Total nonemployer establishments',
-       'All firms', 'Men owned firms', 'Women owned firms',
-       'Minority owned firms', 'Nonminority owned firms',
-       'Veteran owned firms', 'Nonveteran owned firms',
-       'Population per square mile', 'Land area in square miles'],
-      dtype='object')
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 58 entries, 0 to 57
+Data columns (total 63 columns):
+ #   Column                                                       Non-Null Count  Dtype  
+---  ------                                                       --------------  -----  
+ 0   County                                                       58 non-null     object 
+ 1   Population 2019                                              58 non-null     int64  
+ 2   Population 2010                                              58 non-null     int64  
+ 3   Population percent change                                    58 non-null     float64
+ 4   Population Census 2010                                       58 non-null     int64  
+ 5   Under 5 years                                                58 non-null     float64
+ 6   Under 18 years                                               58 non-null     float64
+ 7   65 years and over                                            58 non-null     float64
+ 8   Female persons                                               58 non-null     float64
+ 9   White alone                                                  58 non-null     float64
+ 10  Black or African American alone                              58 non-null     float64
+ 11  American Indian and Alaska Native alone                      58 non-null     float64
+ 12  Asian alone                                                  58 non-null     float64
+ 13  Native Hawaiian and Other Pacific Islander alone             57 non-null     float64
+ 14  Two or More Races                                            58 non-null     float64
+ 15  Hispanic or Latino                                           58 non-null     float64
+ 16  White alone, not Hispanic or Latino                          58 non-null     float64
+ 17  Veterans                                                     58 non-null     int64  
+ 18  Foreign born persons                                         58 non-null     float64
+ 19  Housing units                                                58 non-null     int64  
+ 20  Owner occupied housing unit rate                             58 non-null     float64
+ 21  Median value of owner occupied housing units                 58 non-null     int64  
+ 22  Median selected monthly owner costs with a mortgage          58 non-null     int64  
+ 23  Median selected monthly owner costs without a mortgage       58 non-null     int64  
+ 24  Median gross rent                                            58 non-null     int64  
+ 25  Building permits                                             58 non-null     int64  
+ 26  Households                                                   58 non-null     int64  
+ 27  Persons per household                                        58 non-null     float64
+ 28  Living in same house 1 year ago                              58 non-null     float64
+ 29  Language other than English spoken at home                   58 non-null     float64
+ 30  Households with a computer, percent                          58 non-null     float64
+ 31  Households with a broadband Internet subscription            58 non-null     float64
+ 32  High school graduate or higher                               58 non-null     float64
+ 33  Bachelor degree or higher                                    58 non-null     float64
+ 34  With a disability, under age 65 years                        58 non-null     float64
+ 35  Persons without health insurance, under age 65 years         58 non-null     float64
+ 36  In civilian labor force, total                               58 non-null     float64
+ 37  In civilian labor force, female                              58 non-null     float64
+ 38  Total accommodation and food services sales                  55 non-null     float64
+ 39  Total health care and social assistance receipts or revenue  55 non-null     float64
+ 40  Total manufacturers shipments                                42 non-null     float64
+ 41  Total merchant wholesaler sales                              39 non-null     float64
+ 42  Total retail sales                                           58 non-null     int64  
+ 43  Total retail sales per capita                                58 non-null     int64  
+ 44  Mean travel time to work minutes                             58 non-null     float64
+ 45  Median household income in 2019 dollars                      58 non-null     int64  
+ 46  Per capita income in past 12 months in 2019 dollars          58 non-null     int64  
+ 47  Persons in poverty                                           58 non-null     float64
+ 48  Total employer establishments                                58 non-null     int64  
+ 49  Total employment                                             58 non-null     int64  
+ 50  Total annual payroll                                         58 non-null     int64  
+ 51  Total employment, percent change                             57 non-null     float64
+ 52  Total nonemployer establishments                             58 non-null     int64  
+ 53  All firms                                                    58 non-null     int64  
+ 54  Men owned firms                                              57 non-null     float64
+ 55  Women owned firms                                            58 non-null     int64  
+ 56  Minority owned firms                                         56 non-null     float64
+ 57  Nonminority owned firms                                      58 non-null     int64  
+ 58  Veteran owned firms                                          56 non-null     float64
+ 59  Nonveteran owned firms                                       58 non-null     int64  
+ 60  Population per square mile                                   58 non-null     float64
+ 61  Land area in square miles                                    58 non-null     float64
+ 62  totalcountconfirmed                                          58 non-null     int64  
+dtypes: float64(38), int64(24), object(1)
+memory usage: 28.7+ KB
 ```
-4. Correlation matrix is an effective tool to uncover linear relationship (Correlation) between two numerical features and the importance of a feature to the total confirmed cases number. 
+4. Correlation matrix is an effective method to uncover the linear relationship (correlation) between two numerical features. It also shows the importance of a feature to the total confirmed cases number. 
 ![Correlation matrix](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png)
