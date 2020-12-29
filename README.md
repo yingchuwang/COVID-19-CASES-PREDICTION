@@ -29,23 +29,21 @@ The COVID-19 case data was downloaded from California Open Data Portal (version 
 
 ## Preprocessing
 
-Statistics data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv)
+1. Statistics data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv)
+   1. Rotate the table. Make rows the county names and columns the census data.
+   2. Delete the 'County, California' in the county name.
+   3. Clean the columns title so that they can be accepted by MySQL.
+   4. Deal with the cell format and change all format to 'number' format.
+   5. Delete the 'FIPS CODE' column.
+   6. Delete the cell value with 'D','F','C'.
 
-1. Rotate the table. Make rows the county names and columns the census data.
-2. Delete the 'County, California' in the county name.
-3. Clean the columns title so that they can be accepted by MySQL.
-4. Deal with the cell format and change all format to 'number' format.
-5. Delete the 'FIPS CODE' column.
-6. Delete the cell value with 'D','F','C'.
+2. Case data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv)
+   1. Obtain the data only on 12/17/2020 using MySQL system.
+   2. Only keep the column 'totalcountconfirmed'.
 
-Case data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv)
+3. Combine data and export - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv)
 
-1. Obtain the data only on 12/17/2020 using MySQL system.
-2. Only keep the column 'totalcountconfirmed'.
-
-Combine data and export - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv)
-
-1. After preprocessing, combined the statistics data and cases data and exported it as a csv file.
+   1. After preprocessing, combined the statistics data and cases data and exported it as a csv file.
 
 ## Understanding data
 
@@ -129,5 +127,102 @@ Data columns (total 63 columns):
 dtypes: float64(38), int64(24), object(1)
 memory usage: 28.7+ KB
 ```
-4. Correlation matrix is an effective method to uncover the linear relationship (correlation) between two numerical features. It also shows the importance of a feature to the total confirmed cases number. 
+4. Correlation matrix is an effective method to uncover the linear relationship (correlation) between two numerical features. 
 ![Correlation matrix](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png)
+From the correlation matrix we have identified some variables which are highly correlated with each other. This finding will guide us to remove highly correlated features to avoid performance loss in our model.
+   1. 'Population 2019', 'Population 2010', 'Population Census 2010', 'Veterans', 'Housing units', 'Building permits', 'Households', 'Total accommodations and food services sales', 'Total health care and social assistance receipts or revenue', 'Total manufacturers shipments', 'Total merchant wholesaler sales', 'Total retail sales', 'Total employer establishments', 'Total employment', 'Total annual payroll', 'Total nonemployer establishments', 'All firms', 'Men owned firms', 'Women owned firms', 'Minority owned firms', 'Nonminority owned firms', 'Veteran owned firms', 'Nonveteran owned firms'
+   2. 'Under 5 years', 'Under 18 years'
+   3. 'Median household income in 2019 dollars', 'Median value of owner occupied housing units','Median selected monthly owner costs with a mortgage', 'Median selected monthly owner costs without a mortgage', 'Median gross rent','Households with a broadband internet subscription','Bachelor degree or higher', 'Per capita income in past 12 months in 2019 dollars'
+   4. 'Households with a computer, percent', 'Households with a broadband internet subscription'
+   5. 'Language other than English spoken at home', 'Foreign born persons'
+   6. 'In civilian labor force, total', 'In civilian labor force, female'
+   7. 'Under 18 years', 'Hispanic or Latino'
+   8. '65 years and over', 'While alone, not Hispanic or Latino'
+   9. 'Persons per household','Hispanic or Latino'
+
+5. Identifying the correlation coefficient between viarables and total confirmed cases number. This shows the importance of a feature to the target. The higher the correlation coefficient is, the more important the factor is.
+
+Viarables                                                   |totalcountconfirmed
+------------------------------------------------------------|-------------------
+totalcountconfirmed                                         |1.000000
+Minority owned firms                                        |0.983799
+Population 2010	                                            |0.981193
+Population Census 2010                                      |0.981179
+Women owned firms	                                          |0.979227
+Population 2019                                             |0.978279
+Total nonemployer establishments	                           |0.976220
+Nonveteran owned firms                                      |0.976181
+All firms	                                                  |0.975531
+Men owned firms                                             |0.974269
+Housing units                                               |0.974165
+Households                                                  |0.972644
+Veteran owned firms                                         |0.968655
+Total employer establishments	                              |0.961470
+Total health care and social assistance receipts or revenue	|0.951438
+Total retail sales	                                         |0.951353
+Nonminority owned firms	                                    |0.950817
+Total manufacturers shipments	                              |0.947890
+Total employment	                                           |0.942402
+Building permits	                                           |0.933310
+Total accommodation and food services sales	                |0.924996
+Total merchant wholesaler sales                            	|0.889884
+Veterans	                                                   |0.873307
+Total annual payroll	                                       |0.834266
+Foreign born persons	                                       |0.399857
+Black or African American alone	                            |0.399030
+Language other than English spoken at home	                 |0.375546
+Land area in square miles	                                  |0.272887
+Persons per household	                                      |0.268083
+Hispanic or Latino	                                         |0.258907
+Asian alone	                                                |0.254528
+In civilian labor force, total	                             |0.249704
+Mean travel time to work minutes	                           |0.244859
+In civilian labor force, female                             |0.200582
+Median gross rent	                                          |0.198036
+Median selected monthly owner costs with a mortgage	        |0.186666
+Persons without health insurance, under age 65 years	       |0.185749
+Households with a computer, percent	                        |0.183275
+Total retail sales per capita	                              |0.177381
+Population percent change	                                  |0.173847
+Living in same house 1 year ago	                            |0.169685
+Median value of owner occupied housing units	               |0.165480
+Households with a broadband Internet subscription	          |0.157679
+Population per square mile	                                 |0.148250
+Under 5 years	                                              |0.142020
+Female persons	                                             |0.135083
+Median selected monthly owner costs without a mortgage	     |0.131221
+Total employment, percent change	                           |0.119921
+Bachelor degree or higher	                                  |0.117699
+Under 18 years	                                             |0.114553
+Median household income in 2019 dollars	                    |0.100290
+Native Hawaiian and Other Pacific Islander alone	           |0.084994
+Per capita income in past 12 months in 2019 dollars	        |0.021493
+Persons in poverty	                                         |-0.048207
+Two or More Races	                                          |-0.131938
+American Indian and Alaska Native alone	                    |-0.162263
+High school graduate or higher	                             |-0.167270
+White alone	                                                |-0.263551
+65 years and over	                                          |-0.280585
+With a disability, under age 65 years	                      |-0.289646
+Owner occupied housing unit rate	                           |-0.359313
+White alone, not Hispanic or Latino	                        |-0.371180
+
+6. According to the correlation matrix and correlation coefficient, features have high correlation with others or have low correlation with the target are removed. The strong text in the following are features that kept.
+   1. __'Population 2019'__, 'Population 2010', 'Population Census 2010', 'Veterans', 'Housing units', 'Building permits', 'Households', 'Total accommodations and food services sales', 'Total health care and social assistance receipts or revenue', 'Total manufacturers shipments', 'Total merchant wholesaler sales', 'Total retail sales', 'Total employer establishments', 'Total employment', 'Total annual payroll', 'Total nonemployer establishments', 'All firms', 'Men owned firms', 'Women owned firms', 'Minority owned firms', 'Nonminority owned firms', 'Veteran owned firms', 'Nonveteran owned firms'
+      * Although 'Population 2019' doesn't have the highest correlation coefficient in these high correlated features, I still keep it because it is more meaning ful comparing to the other features. 
+   2. __'Under 5 years'__, 'Under 18 years'
+      * 'Under 5 years' has higher correlation coefficient.
+   3. 'Median household income in 2019 dollars', 'Median value of owner occupied housing units','Median selected monthly owner costs with a mortgage', 'Median selected monthly owner costs without a mortgage', __'Median gross rent'__,'Households with a broadband internet subscription','Bachelor degree or higher', 'Per capita income in past 12 months in 2019 dollars'
+      * 'Median gross rent' has the highest correlation coefficient. 
+   4. __'Households with a computer, percent'__, 'Households with a broadband internet subscription'
+      * 'Households with a computer, percent' has higher correlation coefficient.
+   5. 'Language other than English spoken at home', __'Foreign born persons'__
+      * 'Foreign born persons' has higher correlation coefficient.
+   6. __'In civilian labor force, total'__, 'In civilian labor force, female'
+      * 'In civilian labor force, total' has higher correlation coefficient.
+   7. 'Under 18 years', __'Hispanic or Latino'__
+      * 'Hispanic or Latino' has higher correlation coefficient. 
+   8. __'65 years and over'__, 'While alone, not Hispanic or Latino'
+      * '65 years and over' has higher correlation coefficient.
+   9. 'Persons per household',__'Hispanic or Latino'__
+      * They are have similar correlation coefficient. Since I have keep 'Hispanic or Latino' so 'Persons per household' will be removed.
