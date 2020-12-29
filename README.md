@@ -29,9 +29,9 @@ The COVID-19 case data was downloaded from California Open Data Portal (version 
 
 ## Preprocessing
 
-### Statistics data
+### Statistics data 
 
-Original data: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv
+[Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv)
 
 Steps:
 1. Rotate the table. Make rows the county names and columns the census data.
@@ -43,7 +43,7 @@ Steps:
 
 ### Case data
 
-Original data: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv
+[Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv)
 
 Steps:
 1. Obtain the data only on 12/17/2020 using MySQL system.
@@ -51,7 +51,9 @@ Steps:
 
 ### Combine data and export
 
-After preprocessing, I combined the statistics data and cases data and exported it as a csv file: https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv
+After preprocessing, I combined the statistics data and cases data and exported it as a csv file.
+
+[Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv)
 
 ## Understanding data
 
@@ -103,4 +105,4 @@ Index(['County', 'Population 2019', 'Population 2010',
       dtype='object')
 ```
 4. Correlation matrix is an effective tool to uncover linear relationship (Correlation) between two numerical features and the importance of a feature to the total confirmed cases number. 
-![Algorithm schema](/Users/yingchu99/Documents/project/ml/download.png)
+![Correlation matrix](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png)
