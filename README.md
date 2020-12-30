@@ -203,6 +203,15 @@ xgb_reg_tuned.fit(X_train_s, y_train)
 plot_importance(xgb_reg_tuned, xlabel='Weight', ylabel=None)
 ```
 
+<img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/feature_importance.png" width="700" height="700">
 
+## Conclusion
+
+
+* The more people in the county and the larger the county is, the more COVID-19 cases is.
+* Children under 5 and old people over 65 are very important for the cases number. 
+* Black or African American is important for case number.
+* Health insurance and sales retails are important.
+* This model still needs improvement due to high MAE. 
 
 
