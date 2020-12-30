@@ -21,20 +21,20 @@ The datasets are selected and downloaded from [Census Bureau website](https://ww
 Both datasets need to be preprocessed for further cleaning and modelling. The statistics data and cases data are preprocessed through the following steps.  
 
 1. Statistics data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv)
-   1. Rotate the table. Make rows the county names and columns the census data.
-   2. Delete the 'County, California' in the county name.
-   3. Clean the columns title so that they can be accepted by MySQL.
-   4. Deal with the cell format and change all format to 'number' format.
-   5. Delete the 'FIPS CODE' column.
-   6. Delete the cell value with 'D','F','C'.
+   * Rotate the table. Make rows the county names and columns the census data.
+   * Delete the 'County, California' in the county name.
+   * Clean the columns title so that they can be accepted by MySQL.
+   * Deal with the cell format and change all format to 'number' format.
+   * Delete the 'FIPS CODE' column.
+   * Delete the cell value with 'D','F','C'.
 
 2. Cases data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv)
-   1. Obtain the data only on 12/17/2020 using MySQL system.
-   2. Only keep the column 'totalcountconfirmed'.
+   * Obtain the data only on 12/17/2020 using MySQL system.
+   * Only keep the column 'totalcountconfirmed'.
 
 3. Concatenate and export - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv)
 
-   1. After preprocessing, the statistics data and cases data are concatenate and exported it as a csv file. This csv file will be used for further analysis.
+   * After preprocessing, the statistics data and cases data are concatenate and exported it as a csv file. This csv file will be used for further analysis.
 
 ## Understanding data
 
@@ -66,7 +66,7 @@ Data columns (total 63 columns):
 ```
 
 3. Obtain the correlation matrix to uncover the linear relationship (correlation) between any two numerical features. 
-![Correlation matrix](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png)
+![Correlation matrix](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png/20x15)
 From the correlation matrix we have identified some variables which are highly correlated with each other. This finding will guide us to remove highly correlated features to avoid performance loss in our model.
 
 4. Identify the correlation coefficient between features and target. First 10 rows are shown as follow.
@@ -88,7 +88,20 @@ Men owned firms                                             |0.974269
 According to the correlation matrix and correlation coefficient, features have high correlation with others or have low correlation with the target will be removed. The following are the redundant features.
 
 ```
-'Population 2010', 'Population Census 2010', 'Veterans', 'Housing units', 'Building permits', 'Households', 'Total accommodations and food services sales', 'Total health care and social assistance receipts or revenue', 'Total manufacturers shipments', 'Total merchant wholesaler sales', 'Total retail sales', 'Total employer establishments', 'Total employment', 'Total annual payroll', 'Total nonemployer establishments', 'All firms', 'Men owned firms', 'Women owned firms', 'Minority owned firms', 'Nonminority owned firms', 'Veteran owned firms', 'Nonveteran owned firms', 'Under 18 years', 'Median household income in 2019 dollars', 'Median value of owner occupied housing units','Median selected monthly owner costs with a mortgage', 'Median selected monthly owner costs without a mortgage', 'Households with a broadband internet subscription','Bachelor degree or higher', 'Per capita income in past 12 months in 2019 dollars', 'Households with a broadband Internet subscription', 'Language other than English spoken at home', 'In civilian labor force, female', 'Under 18 years', 'White alone, not Hispanic or Latino', 'Persons per household'
+'Population 2010', 'Population Census 2010', 'Veterans', 'Housing units', 'Building permits', 
+'Households', 'Total accommodations and food services sales', 
+'Total health care and social assistance receipts or revenue', 'Total manufacturers shipments', 
+'Total merchant wholesaler sales', 'Total retail sales', 'Total employer establishments', 
+'Total employment', 'Total annual payroll', 'Total nonemployer establishments', 'All firms', 
+'Men owned firms', 'Women owned firms', 'Minority owned firms', 'Nonminority owned firms', 
+'Veteran owned firms', 'Nonveteran owned firms', 'Under 18 years', 
+'Median household income in 2019 dollars', 'Median value of owner occupied housing units',
+'Median selected monthly owner costs with a mortgage', 
+'Median selected monthly owner costs without a mortgage', 'Households with a broadband internet subscription',
+'Bachelor degree or higher', 'Per capita income in past 12 months in 2019 dollars', 
+'Households with a broadband Internet subscription', 'Language other than English spoken at home', 
+'In civilian labor force, female', 'Under 18 years', 'White alone, not Hispanic or Latino', 
+'Persons per household'
 ```
    
 ## Data Processing
