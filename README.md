@@ -2,7 +2,7 @@
 ## Table of contents 
 * [Background](#background)
 * [Data Collection](#data-collection)
-* [Preprocessing](#preprocessing)
+* [Data Preprocessing](#data-preprocessing)
 * [Data Processing](#data-processing)
 
 ## Background
@@ -66,7 +66,7 @@ Data columns (total 63 columns):
 ```
 
 3. Obtain the correlation matrix to uncover the linear relationship (correlation) between any two numerical features. 
-![Correlation matrix](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png = 100x100)
+<img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png" width="700" height="700">
 From the correlation matrix we have identified some variables which are highly correlated with each other. This finding will guide us to remove highly correlated features to avoid performance loss in our model.
 
 4. Identify the correlation coefficient between features and target. First 10 rows are shown as follow.
