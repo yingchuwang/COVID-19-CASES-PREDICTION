@@ -185,5 +185,24 @@ mae_tune = mean_absolute_error(y_test, y_pred_tune)
 
 ```
 Output
-MAE: 
+MAE: 3406.7991002400718
 ```
+* After tuning, the MAE has decreasded from 4982 to 3407 which means the tuning process is useful. The best parameters of the model is obtained and this model will be used for features importance analysis.
+
+6. __Feature importance__
+
+```
+from xgboost import XGBRegressor
+xgb_reg_tuned = XGBRegressor(reg_lambda=0.01,
+                             reg_alpha=0.001,
+                             n_estimators=100,
+                             min_child_weight=1,
+                             max_depth=3,
+                             learning_rate=0.1)
+xgb_reg_tuned.fit(X_train_s, y_train)
+plot_importance(xgb_reg_tuned, xlabel='Weight', ylabel=None)
+```
+
+
+
+
