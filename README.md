@@ -216,23 +216,14 @@ White alone, not Hispanic or Latino	                        |-0.371180
 
 Per the analysis above, the redundant features are removed. The column 'County' is also removed because the name will not affect the result.
 
-2. fill missing values
+2. Fill missing values
 
 Viarables                                                   |Missing value
 ------------------------------------------------------------|--------------
-Total merchant wholesaler sales	                           |19
-Total manufacturers shipments	                              |16
-Total accommodation and food services sales	               |3
-Total health care and social assistance receipts or revenue |3
-Veteran owned firms	                                       |2
-Minority owned firms                                   	   |2
 Total employment, percent change	                           |1
 Native Hawaiian and Other Pacific Islander alone	         |1
-Men owned firms	                                          |1
 
-There are only two of these viarables are kept in the dataset. They are 'Total employment, percent change' and 'Native Hawaiian and Other Pacific Islander alone'. There is only one missing value in each viarable. I replace the missing value with the mean of the feature distribution.
-
-3. After removing redundant features and filling with missing data, the total number of columns has reduced to 27. The information below shows that no missing value in the dataset.
+There are only two viarables have missing values and each one has only one missing value. I replace the missing value with the mean value. After removing redundant features and filling with missing data, the total number of columns has reduced to 27. The information below shows that no missing value in the dataset.
 
 ```
 <class 'pandas.core.frame.DataFrame'>
@@ -270,3 +261,10 @@ Data columns (total 27 columns):
 dtypes: float64(24), int64(3)
 memory usage: 12.4 KB
 ```
+## Modelling
+
+1. Use _train_test_split_ from _sklearn_ to split the dataset into training data and test data.
+
+2. Use _XGBRgressor_ from _xgboost_ to fit the training data. XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way. 
+
+3. 
