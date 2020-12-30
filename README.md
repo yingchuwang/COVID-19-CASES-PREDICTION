@@ -20,7 +20,7 @@ The datasets are selected and downloaded from [Census Bureau website](https://ww
 
 Both datasets need to be preprocessed for further cleaning and modelling. The statistics data and cases data are preprocessed through the following steps.  
 
-1. Statistics data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv)
+1. __Statistics data__ - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_census.csv)
    * Rotate the table. Make rows the county names and columns the census data.
    * Delete the 'County, California' in the county name.
    * Clean the columns title so that they can be accepted by MySQL.
@@ -28,11 +28,11 @@ Both datasets need to be preprocessed for further cleaning and modelling. The st
    * Delete the 'FIPS CODE' column.
    * Delete the cell value with 'D','F','C'.
 
-2. Cases data - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv)
+2. __Cases data__ - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/CA_statewide_cases.csv)
    * Obtain the data only on 12/17/2020 using MySQL system.
    * Only keep the column 'totalcountconfirmed'.
 
-3. Concatenate and export - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv)
+3. __Concatenate and export__ - [Data link](https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/data.csv)
 
    * After preprocessing, the statistics data and cases data are concatenate and exported it as a csv file. This csv file will be used for further analysis.
 
@@ -40,9 +40,9 @@ Both datasets need to be preprocessed for further cleaning and modelling. The st
 
 The Jupyter notenook is used here for analysis. The Jupyter Notebook is an interactive environment for running code in the browser. It is a great tool for exploratory data analysis and is widely used by data scientists. The Jupyter Notebook makes it easy to incorporate code, text, and images. The dataset is analized through the following steps:
 
-1. Import the dataset into Jupyter notebook.
+1. __Import the dataset into Jupyter notebook__.
 
-2. Show the information of the dataset. First 10 rows are exhibited as follow. 
+2. __Show the information of the dataset__. First 10 rows are exhibited as follow. 
    * The dataset has 58 rows and 63 columns.
    * The data type of columns 'County' is object. The other columns are numerical. 
    * 9 columns have missing values.
@@ -65,11 +65,11 @@ Data columns (total 63 columns):
  9   White alone                                                  58 non-null     float64
 ```
 
-3. Obtain the correlation matrix to uncover the linear relationship (correlation) between any two numerical features. 
+3. __Obtain the correlation matrix__ 
+From correlation matrix, linear relationship (correlation) between any two numerical features is uncovered. Some variables have high correlation with others. These highly correlated features should be removed to avoid performance loss in model.
 <img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png" width="700" height="700">
-From the correlation matrix we have identified some variables which are highly correlated with each other. This finding will guide us to remove highly correlated features to avoid performance loss in our model.
 
-4. Identify the correlation coefficient between features and target. First 10 rows are shown as follow.
+4. __Identify the correlation coefficient between features and target__. First 10 rows are shown as follow.
 
 Viarables                                                   |totalcountconfirmed
 ------------------------------------------------------------|-------------------
@@ -84,7 +84,7 @@ Nonveteran owned firms                                      |0.976181
 All firms	                                                |0.975531
 Men owned firms                                             |0.974269
 
-5. Determin redundant features.
+5. __Determin redundant features__
 According to the correlation matrix and correlation coefficient, features have high correlation with others or have low correlation with the target will be removed. The following are the redundant features.
 
 ```
