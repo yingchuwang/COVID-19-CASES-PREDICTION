@@ -66,12 +66,13 @@ Data columns (total 63 columns):
 ```
 
 3. __Obtain the correlation matrix__ 
+
 From correlation matrix, linear relationship (correlation) between any two numerical features is uncovered. Some variables have high correlation with others. These highly correlated features should be removed to avoid performance loss in model.
 <img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/correlation_matrix.png" width="700" height="700">
 
 4. __Identify the correlation coefficient between features and target__. First 10 rows are shown as follow.
 
-Viarables                                                   |totalcountconfirmed
+Features                                                    |totalcountconfirmed
 ------------------------------------------------------------|-------------------
 totalcountconfirmed                                         |1.000000
 Minority owned firms                                        |0.983799
@@ -85,6 +86,7 @@ All firms	                                                |0.975531
 Men owned firms                                             |0.974269
 
 5. __Determin redundant features__
+
 According to the correlation matrix and correlation coefficient, features have high correlation with others or have low correlation with the target will be removed. The following are the redundant features.
 
 ```
@@ -106,59 +108,82 @@ According to the correlation matrix and correlation coefficient, features have h
    
 ## Data Processing
 
-1. Remove redundant features
+1. __Remove redundant features__ : After removing redundant features, the total number of columns has reduced to 27.
 
-Per the analysis above, the redundant features are removed. The column 'County' is also removed because the name will not affect the result.
+2. __Fill missing values__ : After removing the redundant features, there are two features have missing values and each one has only one missing value. The missing values are replaced with mean value of each feature.
 
-2. Fill missing values
-
-Viarables                                                   |Missing value
+Features                                                    |Missing value
 ------------------------------------------------------------|--------------
-Total employment, percent change	                           |1
-Native Hawaiian and Other Pacific Islander alone	         |1
+Total employment, percent change	                          |1
+Native Hawaiian and Other Pacific Islander alone	          |1
 
-There are only two viarables have missing values and each one has only one missing value. I replace the missing value with the mean value. After removing redundant features and filling with missing data, the total number of columns has reduced to 27. The information below shows that no missing value in the dataset.
-
-```
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 58 entries, 0 to 57
-Data columns (total 27 columns):
- #   Column                                                Non-Null Count  Dtype  
----  ------                                                --------------  -----  
- 0   Population 2019                                       58 non-null     int64  
- 1   Population percent change                             58 non-null     float64
- 2   Under 5 years                                         58 non-null     float64
- 3   65 years and over                                     58 non-null     float64
- 4   Female persons                                        58 non-null     float64
- 5   White alone                                           58 non-null     float64
- 6   Black or African American alone                       58 non-null     float64
- 7   American Indian and Alaska Native alone               58 non-null     float64
- 8   Asian alone                                           58 non-null     float64
- 9   Native Hawaiian and Other Pacific Islander alone      58 non-null     float64
- 10  Two or More Races                                     58 non-null     float64
- 11  Hispanic or Latino                                    58 non-null     float64
- 12  Foreign born persons                                  58 non-null     float64
- 13  Owner occupied housing unit rate                      58 non-null     float64
- 14  Median gross rent                                     58 non-null     int64  
- 15  Living in same house 1 year ago                       58 non-null     float64
- 16  Households with a computer, percent                   58 non-null     float64
- 17  High school graduate or higher                        58 non-null     float64
- 18  With a disability, under age 65 years                 58 non-null     float64
- 19  Persons without health insurance, under age 65 years  58 non-null     float64
- 20  In civilian labor force, total                        58 non-null     float64
- 21  Total retail sales per capita                         58 non-null     int64  
- 22  Mean travel time to work minutes                      58 non-null     float64
- 23  Persons in poverty                                    58 non-null     float64
- 24  Total employment, percent change                      58 non-null     float64
- 25  Population per square mile                            58 non-null     float64
- 26  Land area in square miles                             58 non-null     float64
-dtypes: float64(24), int64(3)
-memory usage: 12.4 KB
-```
 ## Modelling
 
-1. Use _train_test_split_ from _sklearn_ to split the dataset into training data and test data.
+1. __Split the dataset__
 
-2. Use _XGBRgressor_ from _xgboost_ to fit the training data. XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way. 
+```
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+```
 
-3. 
+2. __Feature scaling__
+
+```
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X_train_s = scaler.fit_transform(X_train)
+X_test_s = scaler.transform(X_test)
+```
+
+3. __Train the model__
+
+  * XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way.
+
+```
+from xgboost import XGBRegressor
+xgb_reg = XGBRegressor()
+xgb_reg.fit(X_train_s, y_train)
+y_pred = xgb_reg.predict(X_test_s)
+```
+
+4. __Metric__
+
+```
+from sklearn.metrics import mean_absolute_error
+mae = mean_absolute_error(y_test, y_pred)
+```
+
+```
+Output
+MAE: 4982.424870808919
+```
+
+5. __Fine-Tune the model__
+
+```
+from sklearn.model_selection import RandomizedSearchCV
+import xgboost as xgb
+
+param = {
+    'learning_rate' : [0.01, 0.1, 0.15, 0.3, 0.5],
+    'n_estimators' : [100, 500, 1000, 2000, 3000],
+    'max_depth' : [3, 6, 9],
+    'min_child_weight' : [1, 5, 10, 20],
+    'reg_alpha' : [0.001, 0.01, 0.1],
+    'reg_lambda' : [0.001, 0.01, 0.1]
+}
+model = XGBRegressor()
+xgb_tune = RandomizedSearchCV(model, param_distributions = param,
+                              n_iter = 100, scoring = 'neg_mean_absolute_error',
+                              cv = 5)
+       
+xgb_search = xgb_tune.fit(X_train_s, y_train)
+xgb_search.best_params_
+y_pred_tune = xgb_search.predict(X_test_s)
+mae_tune = mean_absolute_error(y_test, y_pred_tune)
+```
+
+```
+Output
+MAE: 
+```
