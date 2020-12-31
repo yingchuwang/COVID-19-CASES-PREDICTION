@@ -4,6 +4,8 @@
 * [Data Collection](#data-collection)
 * [Data Preprocessing](#data-preprocessing)
 * [Data Processing](#data-processing)
+* [Modeling](#modeling)
+* [Conclusion](#conclusion)
 
 ## Background
 A novel coronavirus is a new coronavirus that has not been previously identified. The virus causing coronavirus disease 2019 (COVID-19), is not the same as the coronaviruses that commonly circulate among humans and cause mild illness, like the common cold [1](https://www.cdc.gov/coronavirus/2019-nCoV/index.html). 
@@ -15,6 +17,7 @@ At this time, learning about California statistics and their relations with COVI
 ## Data Collection
 
 The datasets are selected and downloaded from [Census Bureau website](https://www.census.gov/quickfacts/fact/table/US/PST045219) and [Cailifornia Open Data Portal](https://data.ca.gov/dataset/covid-19-cases). One dataset is the statistics of all California couties in 2019 and the other one is the COVID-19 cases of all counties from 3/17/2020 to 12/17/2020. The following image shows the total confirmed case number for each county.
+
 <img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/case%20map.png" width="500">
 
 ## Data Preprocessing
@@ -204,10 +207,10 @@ xgb_reg_tuned.fit(X_train_s, y_train)
 plot_importance(xgb_reg_tuned, xlabel='Weight', ylabel=None)
 ```
 
-<img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/feature_importance.png" width="400">
+<img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/feature_importance.png" width="700">
 
 ## Conclusion
-<img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/feature_importance%202.png" width="500">
+<img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/feature_importance%202.png" width="700">
 
 * The more people in the county and the larger the county is, the more COVID-19 cases is.
 * Children under 5 and old people over 65 are very important for the cases number. 
