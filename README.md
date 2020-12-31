@@ -207,9 +207,10 @@ xgb_reg_tuned.fit(X_train_s, y_train)
 plot_importance(xgb_reg_tuned, xlabel='Weight', ylabel=None)
 ```
 
-<img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/feature_importance.png" width="700">
+<img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/feature_importance.png" width="500">
 
 ## Conclusion
+
 <img src="https://github.com/yingchuwang/COVID-19-CASES-PREDICTION/blob/main/feature_importance%202.png" width="700">
 
 * The more people in the county and the larger the county is, the more COVID-19 cases is.
